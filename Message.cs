@@ -18,6 +18,13 @@ namespace Enhanced_Calculator
             Console.ResetColor();
         }
 
+        public void ShowInfo(string infoMessage)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(infoMessage);
+            Console.ResetColor();
+        }
+
         public void ClosingText()
         {
             Console.ForegroundColor = ConsoleColor.DarkGreen;

@@ -13,7 +13,7 @@ namespace Enhanced_Calculator
         {
             if (string.IsNullOrEmpty(input))
             {
-                _message.ShowError("Expression can't be empty! Check once more");
+                _message.ShowError("Expression can't be empty! Check once more\r\n");
                 return false;
             }
 
@@ -21,7 +21,7 @@ namespace Enhanced_Calculator
 
             if (isForbiddenSymbol)
             {
-                _message.ShowError("Forbidden symbol detected. Use only following symbols [0-9+-/*]");
+                _message.ShowError("Forbidden symbol detected. Use only following symbols [0-9+-/*]\r\n");
                 return false;
             }
 
@@ -29,7 +29,7 @@ namespace Enhanced_Calculator
 
             if (isDividedToZero)
             {
-                _message.ShowError("Division to Zero is not allowed");
+                _message.ShowError("Division to Zero is not allowed\r\n");
                 return false;
             }
 
@@ -37,7 +37,7 @@ namespace Enhanced_Calculator
 
             if (lastSymbolNotANumber)
             {
-                _message.ShowError("Format is not correct. Please check last char and resubmit");
+                _message.ShowError("Format is not correct. Please check last char and resubmit\r\n");
                 return false;
             }
 
@@ -45,7 +45,7 @@ namespace Enhanced_Calculator
 
             if (firstSymbolNotANumber)
             {
-                _message.ShowError("Format is not correct. Please check first char and resubmit");
+                _message.ShowError("Format is not correct. Please check first char and resubmit\r\n");
                 return false;
             }
 

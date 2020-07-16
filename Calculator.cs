@@ -5,9 +5,9 @@ namespace Enhanced_Calculator
     class Calculator
     {
         private readonly Message _message = new Message();
-        public int Calculate(string input)
+        public double Calculate(string input)
         {
-            int result;
+            double result;
             string[] expCollection = input.Split('+');
             if (expCollection.Length > 1)
             {
@@ -49,9 +49,10 @@ namespace Enhanced_Calculator
                 return result;
             }
 
-            if (!int.TryParse(input, out result))
+            var isNotANumber = !double.TryParse(input, out result);
+            if (isNotANumber)
             {
-                _message.ShowError("Expression is not numeric");
+                _message.ShowError("Expression is not numeric\r\n");
                 throw new ArgumentException("");
             }
 
