@@ -4,59 +4,93 @@ namespace Enhanced_Calculator
 {
     class Calculator
     {
-        private readonly Message _message = new Message();
+        private readonly Validator _validator = new Validator();
+
         public double Calculate(string input)
         {
-            double result;
+
+            _validator.ValidateInput(input);
+            return Calc(input);
+
+        }
+
+        private double Calc(string input)
+        {
             string[] expCollection = input.Split('+');
             if (expCollection.Length > 1)
             {
-                result = 0;
-                foreach (string exp in expCollection)
-                { 
-                    result += Calculate(exp);
-                }
-                return result;
+                return Addition(expCollection);
             }
+
             expCollection = input.Split('-');
             if (expCollection.Length > 1)
             {
-                result = Calculate(expCollection[0]);
-                for (int i = 1; i < expCollection.Length; i++)
-                {
-                    result -= Calculate(expCollection[i]);
-                }
-                return result;
+                return Subtraction(expCollection);
             }
+
             expCollection = input.Split('/');
             if (expCollection.Length > 1)
             {
-                result = Calculate(expCollection[0]);
-                for (int i = 1; i < expCollection.Length; i++)
-                {
-                    result /= Calculate(expCollection[i]);
-                }
-                return result;
+                return Division(expCollection);
             }
+
             expCollection = input.Split('*');
             if (expCollection.Length > 1)
             {
-                result = 1;
-                foreach (string exp in expCollection)
-                {
-                    result *= Calculate(exp);
-                }
-                return result;
+                return Multiplication(expCollection);
             }
 
-            var isNotANumber = !double.TryParse(input, out result);
-            if (isNotANumber)
+            return ConvertInputToNumber(input);
+        }
+
+        private double Addition(string[] expCollection)
+        {
+            var result = 0.00;
+            foreach (string exp in expCollection)
             {
-                _message.ShowError("Expression is not numeric\r\n");
-                throw new ArgumentException("");
+                result += Calc(exp);
             }
-
             return result;
         }
+
+        private double Subtraction(string[] expCollection)
+        {
+            var result = Calc(expCollection[0]);
+            for (int i = 1; i < expCollection.Length; i++)
+            {
+                result -= Calc(expCollection[i]);
+            }
+            return result;
+        }
+
+        private double Division(string[] expCollection)
+        {
+            var result = Calc(expCollection[0]);
+            for (int i = 1; i < expCollection.Length; i++)
+            {
+                result /= Calc(expCollection[i]);
+            }
+            return result;
+        }
+
+        private double Multiplication(string[] expCollection)
+        {
+            var result = 1.00;
+            foreach (string exp in expCollection)
+            {
+                result *= Calc(exp);
+            }
+            return result;
+        }
+
+        private double ConvertInputToNumber(string str)
+        {
+            _validator.ValidateToBeNumber(str);
+
+            double.TryParse(str, out var num);
+            return num;
+
+        }
+
     }
 }

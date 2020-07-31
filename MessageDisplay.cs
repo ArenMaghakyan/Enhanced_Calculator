@@ -2,9 +2,9 @@
 
 namespace Enhanced_Calculator
 {
-    class Message
+    class MessageDisplay
     {
-        public void SettingAppHeader()
+        public void SetAppHeader()
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Input expression and press Enter. Only simple operation is supported (+, -, /, *)");
@@ -25,7 +25,7 @@ namespace Enhanced_Calculator
             Console.ResetColor();
         }
 
-        public void ClosingText()
+        public void ShowClosingInfo()
         {
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("Sorry to see you leaving (");
